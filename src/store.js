@@ -5,4 +5,8 @@ import cartReducer from './CartSlice';
         cart: cartReducer,
     },
 });
-export default store
+
+store.subscribe(() => console.log("Redux State:", store.getState()));
+
+
+export default store;

@@ -49,20 +49,24 @@ body {
 }
 .product-list {
     display: flex;
-    flex-wrap: wrap;
-    gap: 50px;
-    /* background-color: pink; */
-    /* justify-content: space-between; */
+    flex-direction: column;
+    gap: 40px; 
+    justify-content: center;
     padding: 20px;
     width: 100%;
     align-items: center;
+}
+
+.category-container {
+    width:100%;
     justify-content: center;
 }
 
 /* Product Card */
 .product-card {
-    flex: 0 0 calc(33.33% - 20px); /* Adjust width for 3 cards per row with 20px gap */
-    max-width: calc(26.33% - 20px); /* Adjust max-width for 3 cards per row with 20px gap */
+    flex: 0 1 calc(30% - 20px); /* Adjust width for 3 cards per row with 20px gap */
+    max-width: calc(30% - 20px); /* Adjust max-width for 3 cards per row with 20px gap */
+    min-width: 280px;
     margin-bottom: 20px;
     padding: 20px;
     background-color: #fff;
@@ -70,8 +74,6 @@ body {
     border-radius: 5px;
     text-align: center;
     position: relative;
-    
-    gap: 20px;
 }
 
 /* Pseudo-classes - Hover effect on product button */

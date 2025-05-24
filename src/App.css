@@ -92,8 +92,12 @@
 /* ProductList.css */
 
 .product-list-container {
+  display: flex;
+  flex-wrap: wrap;
   position: absolute;
   overflow-x: hidden;
+  justify-content: center;
+  align-items: flex-start;
   top: 100vh;
   /* Initially off-screen */
   left: 0;

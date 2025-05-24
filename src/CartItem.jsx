@@ -1,40 +1,67 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { removeItem, updateQuantity } from './CartSlice';
+import { removeItem, updateQuantity, addItem, selectTotalQuantity } from './CartSlice';
 import './CartItem.css';
 
 const CartItem = ({ onContinueShopping }) => {
   const cart = useSelector(state => state.cart.items);
+  const totalQuantity = useSelector(selectTotalQuantity);
+  useEffect(() => {
+  console.log("Updated totalQuantity:", totalQuantity);
+}, [totalQuantity]);
+console.log("Final span content:", document.querySelector(".total_cart_amount")?.textContent);
+
   const dispatch = useDispatch();
 
-  // Calculate total amount for all products in the cart
   const calculateTotalAmount = () => {
- 
+    return cart.reduce((total, item) => total + item.cost * item.quantity, 0).toFixed(2);
   };
 
   const handleContinueShopping = (e) => {
-   
+    e.preventDefault();
+    history.goBack();
   };
 
-
-
   const handleIncrement = (item) => {
+    dispatch(updateQuantity(item.name, item.quantity + 1));
   };
 
   const handleDecrement = (item) => {
-   
+    if (item.quantity > 1) {
+      dispatch(updateQuantity(item.name, item.quantity - 1));
+    } else {
+      dispatch(removeItem(item.name));
+    }
   };
 
   const handleRemove = (item) => {
+    dispatch(removeItem(item.name));
   };
 
-  // Calculate total cost based on quantity for an item
   const calculateTotalCost = (item) => {
+    return (item.cost * item.quantity).toFixed(2);
   };
 
   return (
     <div className="cart-container">
       <h2 style={{ color: 'black' }}>Total Cart Amount: ${calculateTotalAmount()}</h2>
+      <div className="cart-icon-container">
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="40"
+    height="40"
+    viewBox="0 0 256 256"
+    className="cart-image"
+    aria-label="Cart Icon"
+  >
+    <path d="M6 6h15l-2 10H8L6 6zm3 10a2 2 0 100 4 2 2 0 000-4zm8 0a2 2 0 100 4 2 2 0 000-4z"/>
+  </svg>
+
+  {/* Ensure totalQuantity is correctly displayed */}
+  <span className="total_cart_amount">{totalQuantity ?? "ERROR: Undefined"}</span>
+
+</div>
+
       <div>
         {cart.map(item => (
           <div className="cart-item" key={item.name}>
@@ -64,5 +91,3 @@ const CartItem = ({ onContinueShopping }) => {
 };
 
 export default CartItem;
-
-

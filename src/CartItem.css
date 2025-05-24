@@ -202,8 +202,12 @@
     }
   }
   
+  * {
+  overflow: visible !important; /* Force visibility globally */
+}
 
-  .cart-container{
+
+.cart-container{
     /* text-align: center; */
     display: flex;
     align-items: center;
@@ -212,10 +216,35 @@
     gap: 20px;
     margin-top: 20px;
    }
-   .total_cart_amount{
-    font-size: 20px;
-    font-weight: 900;
-   }
+
+.cart-icon-container {
+  position: relative !important;
+  width: 50px !important;
+  height: 50px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  overflow: visible !important;
+}
+
+.total_cart_amount {
+  position: absolute !important;
+  top: -858px !important;
+  right: -1860px !important;
+  width: 30px !important; /* Keeps it circular */
+  height: 30px !important;
+  font-size: 18px !important;
+  color: white !important; /* Number inside should be visible */
+  background: red !important; /* Red circle */
+  display: flex !important;
+  justify-content: center !important; /* Center the number */
+  align-items: center !important; /* Center vertically */
+  border-radius: 50% !important; /* Makes it a perfect circle */
+  font-weight: bold !important;
+  z-index: 99999 !important;
+}
+
+
 .continue_shopping_btn{
   margin-top: -50px;
 }
